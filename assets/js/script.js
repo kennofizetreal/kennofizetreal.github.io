@@ -785,10 +785,10 @@
         $('#clock').countdown('2024-11-10 00:00:00', function (event) {
             var $this = $(this).html(event.strftime(''
                 // + '<div class="box"><div><div class="time">%m</div> <span>Month</span> </div></div>'
-                + '<div class="box"><div><div class="time">%D</div> <span>Days</span> </div></div>'
-                + '<div class="box"><div><div class="time">%H</div> <span>Hours</span> </div></div>'
-                + '<div class="box"><div><div class="time">%M</div> <span>Mins</span> </div></div>'
-                + '<div class="box"><div><div class="time">%S</div> <span>Secs</span> </div></div>'));
+                + '<div class="box"><div><div class="time">%D</div> <span>Ngày</span> </div></div>'
+                + '<div class="box"><div><div class="time">%H</div> <span>Giờ</span> </div></div>'
+                + '<div class="box"><div><div class="time">%M</div> <span>Phút</span> </div></div>'
+                + '<div class="box"><div><div class="time">%S</div> <span>Giây</span> </div></div>'));
         });
     }
     /*------------------------------------------
