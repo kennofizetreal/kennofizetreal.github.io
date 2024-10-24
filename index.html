@@ -5,9 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="wpOceans">
+    <meta name="author" content="Phương & Hà">
+    <meta property="og:title" content="Thiệp Cưới Online của Phương & Hà">
+    <meta property="og:description" content="Chào mừng Quý vị đến với trang thiệp cưới online của Phương và Hà. Hãy cùng chúng tôi chia sẻ khoảnh khắc hạnh phúc trong ngày trọng đại và theo dõi các thông tin về lễ cưới!">
+    <meta property="og:image" content="custom/images/banner/1.png">
+    <meta property="og:url" content="https://phuong-ha.love">
     <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
     <title>Wedding Phương & Hà</title>
+    
     <link href="assets/css/themify-icons.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/flaticon.css" rel="stylesheet">
@@ -62,7 +67,7 @@
                             </div>
                             <div class="col-lg-2 col-md-6 col-6">
                                 <div class="navbar-header">
-                                    <a class="navbar-brand" href="/"><img src="assets/images/logo.svg"
+                                    <a class="navbar-brand" href="/"><img src="custom/images/logo/color.png"
                                             alt=""></a>
                                 </div>
                             </div>
@@ -74,7 +79,7 @@
                                         <li><a href="invitation-men.html">Nhà trai</a></li>
                                         <li><a href="invitation-women.html">Nhà gái</a></li>
                                         <li><a href="gallery.html">Ảnh cưới</a></li>
-                                        <li><a href="contact.html">Liên hệ</a></li>
+                                        <li><a href="wedding-congratulations.html">Mừng cưới</a></li>
                                     </ul>
 
                                 </div><!-- end of nav-collapse -->
@@ -158,9 +163,6 @@
                                         <p>
                                             Bà Nguyễn Thị Thuần
                                         </p>
-                                        <p>
-                                            Thành phố Hải Dương
-                                        </p>
                                         <div class="couple-bg">
                                             <svg viewBox="0 0 500 433" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -179,7 +181,8 @@
                                     <div class="couple-text">
                                         <i><img src="assets/images/couple/bride.svg" alt=""></i>
                                         <h3>Khuất Thu Hà</h3>
-                                        <p>Ông Khuất Duy Thắng</p> <p>Bà Trần Thị Xuyến</p> <p>Thành phố Hà Nội</p>
+                                        <p>Ông Khuất Duy Thắng</p>
+                                        <p>Bà Trần Thị Xuyến</p>
                                         <div class="couple-bg">
                                             <svg viewBox="0 0 500 433" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -288,7 +291,7 @@
             <div class="container-fluid">
                 <div class="wpo-section-title">
                     <h4 class="poort-text poort-in-right">Album Hình Cưới</h4>
-                    <h2 class="poort-text poort-in-right">Tình yêu không phải là những lời thề non hẹn biển, chỉ đơn giản là cùng nhau bình yên qua ngày.</h2>
+                    <h2 class="poort-text poort-in-right">Tình yêu không phải là những lời thề non hẹn biển, mà là sự đồng hành, thấu hiểu qua từng khoảnh khắc của cuộc đời.</h2>
                 </div>
                 <div class="gallery-main-wrap">
                     <div class="row align-items-center">
@@ -434,57 +437,61 @@
                                     <div class="wpo-section-title">
                                         <h2>Xác Nhận Tham Dự</h2>
                                     </div>
-                                    <form method="post" class="contact-validation-active" id="contact-form-main">
+                                    <form method="post" class="contact-validation-active" id="register_to_attend_form">
                                         <div>
-                                            <input type="text" class="form-control" name="name" id="name"
-                                                placeholder="Tên">
+                                            <input type="text" class="form-control" name="mode" value="register_event" hidden>
+                                            <input type="text" class="form-control" name="name" placeholder="Tên">
                                         </div>
                                         <div>
-                                            <input type="text" class="form-control" name="phone" id="phone"
-                                                placeholder="Số điện thoại">
+                                            <input type="number" class="form-control" name="phone" placeholder="Số điện thoại">
                                         </div>
                                         <div class="radio-buttons">
                                             <p>
-                                                <input type="radio" id="attend" name="join" checked>
+                                                <input type="radio" id="attend" name="join" value="attend" checked>
                                                 <label for="attend">Tôi sẽ tham gia</label>
                                             </p>
                                             <p>
-                                                <input type="radio" id="not" name="join">
-                                                <label for="not">Tôi không thể đến</label>
+                                                <input type="radio" id="not_attend" name="join" value="not_attend">
+                                                <label for="not_attend">Tôi không thể đến</label>
                                             </p>
                                         </div>
                                         <div class="radio-buttons">
                                             <p>
-                                                <input type="radio" id="room-men" name="room" checked>
-                                                <label for="room">Nhà trai</label>
+                                                <input type="radio" id="men" name="room" value="men" checked>
+                                                <label for="men">Nhà trai</label>
                                             </p>
                                             <p>
-                                                <input type="radio" id="room-women" name="room">
-                                                <label for="room-women">Nhà gái</label>
+                                                <input type="radio" id="women" name="room" value="women">
+                                                <label for="women">Nhà gái</label>
                                             </p>
                                         </div>
                                         <div>
-                                            <select name="guest" class="form-control">
-                                                <option disabled="disabled" selected>Số người tham dự</option>
-                                                <option>01</option>
-                                                <option>02</option>
-                                                <option>03</option>
-                                                <option>04</option>
-                                                <option>05</option>
+                                            <select name="number_of_attendees" class="form-control">
+                                                <option disabled selected>Số người tham dự</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <select name="meal" class="form-control last">
-                                                <option disabled="disabled" selected>Chỉ Lễ Cưới</option>
-                                                <option>Lễ hỏi & Cưới</option>
+                                            <select name="time_key" class="form-control last">
+                                                <option disabled selected>Khung giờ tham dự</option>
+                                                <option value="engagement">Chỉ Lễ Hỏi</option>
+                                                <option value="wedding">Chỉ Lễ Cưới</option>
+                                                <option value="wedding_engagement">Lễ hỏi & Cưới</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <input type="text" class="form-control" name="what" id="what"
-                                                placeholder="Đôi lời gửi gắm">
+                                            <input type="text" class="form-control" name="note" placeholder="Đôi lời gửi gắm">
                                         </div>
                                         <div class="submit-area">
-                                            <button type="submit" class="theme-btn">Xác nhận</button>
+                                            <button id="c-button-sumbit" type="submit" class="theme-btn">Xác nhận</button>
                                             <div id="c-loader">
                                                 <i class="ti-reload"></i>
                                             </div>
@@ -516,7 +523,7 @@
             <div class="container">
                 <div class="wpo-section-title">
                     <h4 class="poort-text poort-in-right">Sự Kiện Cưới</h4>
-                    <h2 class="poort-text poort-in-right">Sự hiện diện của bạn sẽ khiến chúng tôi cảm thấy vô cùng hạnh phúc và ấm áp. Vậy nên đây là lịch trình của chuỗi sự kiện cưới, rất mong có thể gặp được bạn tại ngày vui của chúng tôi.</h2>
+                    <h2 class="poort-text poort-in-right">Sự hiện diện của quý vị sẽ khiến chúng tôi cảm thấy vô cùng hạnh phúc và ấm áp. Vậy nên đây là lịch trình của chuỗi sự kiện cưới, rất mong có thể gặp được quý vị tại ngày vui của chúng tôi.</h2>
                 </div>
                 <div class="wpo-event-main wpo-section-title">
                     <div class="event-description">
@@ -535,7 +542,12 @@
                                     <span>Tiệc cưới</span>
                                 </div>
                                 <div class="wpo-event-time">
-                                    <h4>9:00 sáng</h4>
+                                    <h4>
+                                        10:00 sáng
+                                        <h5>
+                                            Chủ Nhật 10.11.2024
+                                        </h5>
+                                    </h4>
                                     <i class="fa fa-heart"></i>
                                 </div>
                             </div>
@@ -545,7 +557,12 @@
                                     <span>Lễ Thành Hôn</span>
                                 </div>
                                 <div class="wpo-event-time">
-                                    <h4>10:35 sáng</h4>
+                                    <h4>
+                                        10:35 sáng
+                                        <h5>
+                                            Chủ Nhật 10.11.2024
+                                        </h5>
+                                    </h4>
                                     <i class="fa fa-heart"></i>
                                 </div>
                             </div>
@@ -562,7 +579,7 @@
                             <h2 class="">Nhà gái</h2>
                         </div>
                         
-                        <p>08:00 | Chủ Nhật | 10.11.2024</p>
+                        <p>07:30 | Chủ Nhật | 10.11.2024</p>
                         <p>Tại Tư Gia, 174 Đường 2, Phù lỗ, Sóc Sơn, Hà Nội</p>
                     </div>
                     <div class="wpo-event-wrap">
@@ -621,7 +638,7 @@
                                 </div>
                                 <div class="link-wrap">
                                     <ul>
-                                        <li><a href="contact.html">Liên hệ</a></li>
+                                        <li><a href="wedding-congratulations.html">Mừng cưới</a></li>
                                         <li><a href="gallery.html">Ảnh cưới</a></li>
                                     </ul>
                                     <ul>
@@ -634,7 +651,7 @@
                         <div class="col col-xl-6 col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="widget about-widget">
                                 <div class="logo widget-title">
-                                    <a class="logo" href="/"><img src="assets/images/logo-2.svg" alt=""></a>
+                                    <a class="logo" href="/"><img src="custom/images/logo/white.png" alt=""></a>
                                 </div>
                                 <p>Sự hiện diện diện Quý khách là niềm vinh hạnh cho gia đình chúng tôi</p>
                             </div>
@@ -680,6 +697,7 @@
     <script src="assets/js/gsap-active.js"></script>
     <!-- Custom script for this template -->
     <script src="assets/js/script.js"></script>
+    <script src="custom/js/form.js"></script>
 </body>
 
 </html>
