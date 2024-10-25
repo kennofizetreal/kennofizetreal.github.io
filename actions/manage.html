@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>
+        Quản lý
+    </title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            background-color: #f1f1f1;
+            margin-right: 5px;
+        }
+
+        .tab.active {
+            background-color: #fff;
+            font-weight: bold;
+            border-top: 2px solid #007bff;
+        }
+
+        #myInput {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        table tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr.header, table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .sortable {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .sort-icon {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+
+        .sort-up::after {
+            content: " ▲";
+            color: #007bff;
+        }
+
+        .sort-down::after {
+            content: " ▼";
+            color: #007bff;
+        }
+        .alert-message{
+            text-align: center;
+            height: 100px;
+        }
+        .tab{
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tabs">
+        <div class="tab active" onclick="loadData('attend',0)">Đăng kí Tham Dự</div>
+        <div class="tab" onclick="loadData('memories',1)">Sổ lưu bút</div>
+    </div>
+
+    <input type="text" id="myInput" onkeyup="search()" placeholder="Nhập tên hoặc SĐT" title="Nhập tên hoặc SĐT">
+
+    <table id="tableData">
+    </table>
+
+    <script src="/assets/js/jquery.min.js"></script>
+    <script>
+        let currentTab = 'attend';
+        let sortDirection = true;
+
+        function loadding(){
+            $('#myInput').hide();
+            $('#tableData').html('<tbody><tr><th class="alert-message">Đang tải dữ liệu mới</th></tr></tbody>');
+        }
+
+        function loadDone(){
+            $('#myInput').show();
+        }
+
+        function loadFail(){
+            $('#myInput').hide();
+            $('#tableData').html('<tbody><tr><th class="alert-message">Có lỗi đã xảy ra khi tải dữ liệu</th></tr></tbody>');
+        }
+
+        function loadData(tab,tab_index) {
+            sortDirection = true;
+            loadding()
+            updateActiveTab(tab,tab_index);
+            currentTab = tab;
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString)
+
+            $.ajax({
+                url: 'https://bke.reg.vn/api/event-dev/note/details',
+                method: 'POST',
+                data: {'mode': currentTab == 'attend' ? 'register_event' : 'memory_book', 'code': urlParams.get('code')},
+                success: function (data) {
+                    renderTable(data.datas.reverse());
+                    loadDone();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    loadFail();
+                }
+            });
+        }
+
+        function convertSimple(data) {
+            if(data){
+                return data;
+            }else{
+                return '---';
+            }
+        }
+
+        function convertJoin(data) {
+            if(data){
+                if(data == 'attend'){
+                    return 'Tham gia';
+                }else if(data == 'not_attend'){
+                    return 'Không Tham gia';
+                }else{
+                    return '---';
+                }
+            }else{
+                return '---';
+            }
+        }
+
+        function convertRoom(data) {
+            if(data){
+                if(data == 'men'){
+                    return 'Nhà trai';
+                }else if(data == 'women'){
+                    return 'Nhà gái';
+                }else{
+                    return '---';
+                }
+            }else{
+                return '---';
+            }
+        }
+
+        function convertTime(data) {
+            if(data){
+                if(data == 'engagement'){
+                    return 'Chỉ Lễ Hỏi';
+                }else if(data == 'wedding'){
+                    return 'Chỉ Lễ Cưới';
+                }else if(data == 'wedding_engagement'){
+                    return 'Lễ hỏi & Cưới';
+                }else{
+                    return '---';
+                }
+            }else{
+                return '---';
+            }
+        }
+
+        function renderTable(data) {
+            const table = document.getElementById("tableData");
+            if(currentTab == 'attend'){ 
+                const rows = data.map(item => `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${convertSimple(item.name)}</td>
+                        <td>${convertSimple(JSON.parse(item.data_json)['phone'])}</td>
+                        <td>${convertJoin(JSON.parse(item.data_json)['join'])}</td>
+                        <td>${convertRoom(JSON.parse(item.data_json)['room'])}</td>
+                        <td>${convertSimple(JSON.parse(item.data_json)['number_of_attendees'])}</td>
+                        <td>${convertTime(JSON.parse(item.data_json)['time_key'])}</td>
+                        <td>${convertSimple(JSON.parse(item.data_json)['note'])}</td>
+                    </tr>
+                `).join('');
+
+                table.innerHTML = `
+                    <tr class="header">
+                        <th class="sortable" onclick="sortTable()">ID <span class="sort-icon ${sortDirection ? 'sort-up' : 'sort-down'}"></span></th>
+                        <th>Tên</th>
+                        <th>SDT</th>
+                        <th>Tham gia</th>
+                        <th>Nhà trai / gái</th>
+                        <th>Số người</th>
+                        <th>Khung giờ</th>
+                        <th>Gửi gắm</th>
+                    </tr>
+                    ${rows}
+                `;
+            }else{
+                const rows = data.map(item => `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${convertSimple(item.name)}</td>
+                        <td>${convertSimple(JSON.parse(item.data_json)['note'])}</td>
+                    </tr>
+                `).join('');
+
+                table.innerHTML = `
+                    <tr class="header">
+                        <th class="sortable" onclick="sortTable()">ID <span class="sort-icon ${sortDirection ? 'sort-up' : 'sort-down'}"></span></th>
+                        <th>Tên</th>
+                        <th>Nội Dung</th>
+                    </tr>
+                    ${rows}
+                `;
+            }
+            
+        }
+
+        function sortTable() {
+            const table = document.getElementById("tableData");
+            const rows = Array.from(table.rows).slice(1);
+            const sortedRows = rows.sort((a, b) => {
+                const aName = a.cells[0].innerText.toLowerCase();
+                const bName = b.cells[0].innerText.toLowerCase();
+
+                if (aName < bName) return sortDirection ? -1 : 1;
+                if (aName > bName) return sortDirection ? 1 : -1;
+                return 0;
+            });
+
+            sortDirection = !sortDirection;
+
+            for (const row of sortedRows) {
+                table.appendChild(row);
+            }
+
+            updateSortIcon();
+        }
+
+        function updateSortIcon() {
+            const icon = document.querySelector('.sort-icon');
+            icon.classList.remove('sort-up', 'sort-down');
+            icon.classList.add(sortDirection ? 'sort-up' : 'sort-down');
+        }
+
+        function updateActiveTab(activeTab,activeTabIndex) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            if($(tabs[activeTabIndex])){
+                $(tabs[activeTabIndex]).addClass('active')
+            }
+        }
+
+        function search() {
+            const input = document.getElementById("myInput");
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById("tableData");
+            const tr = table.getElementsByTagName("tr");
+            for (let i = 1; i < tr.length; i++) {
+                const tds = tr[i].getElementsByTagName("td");
+                let rowMatches = false;
+
+                for (let j = 1; j < 3; j++) {
+                    if (tds[j]) {
+                        const txtValue = tds[j].textContent || tds[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            rowMatches = true;
+                            break;
+                        }
+                    }
+                }
+                
+                tr[i].style.display = rowMatches ? "" : "none";  
+            }
+        }
+
+        loadData(currentTab,0);
+    </script>
+
+</body>
+</html>
