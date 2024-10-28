@@ -55,9 +55,10 @@ h1, h2, h3, h4, h5, h6{
     font-size: 65px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text h2 div:nth-child(2), .wpo-coming-soon-area .wpo-event-item .wpo-event-text h2 div:nth-child(2){
-    margin: 0px 10px;
+    margin: -29px 0px;
 }
 .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text ul li:last-child, .wpo-coming-soon-area .wpo-event-item .wpo-event-text ul li:last-child{
     margin-top: 10px;
@@ -74,6 +75,36 @@ h1, h2, h3, h4, h5, h6{
 .wpo-contact-pg-section .wpo-contact-title h2{
     font-size: 5.33333rem;
     margin-bottom: -2px;
+}
+
+
+.wpo-invitation-area-s2 .title{
+    margin-top: 22px;
+}
+
+.wpo-invitation-area-s2 .wpo-event-text .header-family{
+    display: flex;
+    justify-content: space-evenly;
+}
+.wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name{
+    display: flex;
+    font-weight: bolder;
+    align-items: center;
+}
+.wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name div:nth-child(1){
+    margin-right: 5px;
+    font-size: 17px;
+}
+.wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name div:nth-child(2){
+    text-transform: uppercase;
+}
+.wpo-invitation-area-s2 .wpo-event-item .wpo-event-text img{
+    width: 91px;
+    position: absolute;
+    right: 0;
+    position: absolute;
+    margin-inline: auto;
+    bottom: 0;
 }
 @media (max-width: 1800px) {
     .bottom-text h2 {
@@ -122,6 +153,15 @@ h1, h2, h3, h4, h5, h6{
     .wpo-page-title .wpo-breadcumb-wrap h2 {
         font-size: 59px;
     }
+
+    .wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name div:nth-child(1){
+        margin-right: 3px;
+        font-size: 13px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text p, .wpo-coming-soon-area .wpo-event-item .wpo-event-text p{
+        font-size: 16px;
+        margin-top: 10px;
+    }
 }
 @media (max-width: 575px) {
     .static-hero .slide-title h2{
@@ -144,9 +184,29 @@ h1, h2, h3, h4, h5, h6{
         flex-direction: column;
     }
     .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text h2 div:nth-child(2), .wpo-coming-soon-area .wpo-event-item .wpo-event-text h2 div:nth-child(2){
-        margin: -17px;
+        margin: -21px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text ul, .wpo-coming-soon-area .wpo-event-item .wpo-event-text ul{
+        margin-top: 30px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text p, .wpo-coming-soon-area .wpo-event-item .wpo-event-text p{
+        font-size: 14px;
+        margin-top: 9px;
     }
 }
+@media (max-width: 475px) {
+    .wpo-invitation-area-s2 .wpo-event-text .header-family{
+        margin: 0px -21px;
+    }
+    .wpo-invitation-area-s2 .address{
+        font-size: 14px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text p, .wpo-coming-soon-area .wpo-event-item .wpo-event-text p{
+        font-size: 13px;
+        margin-top: 8px;
+    }
+}
+
 @media (max-width: 450px) {
     .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text ul li, .wpo-coming-soon-area .wpo-event-item .wpo-event-text ul li{
         font-size: 12px;
@@ -155,8 +215,55 @@ h1, h2, h3, h4, h5, h6{
         text-wrap-mode: nowrap;
     }
 }
+
+@media (max-width: 421px) {
+    .wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name div:nth-child(2) {
+        font-size: 11px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name div:nth-child(1){
+        font-size: 11px;   
+    }
+    .wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail i{
+        font-size: 12px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text p, .wpo-coming-soon-area .wpo-event-item .wpo-event-text p{
+        font-size: 12px;
+        margin-top: 7px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text h2, .wpo-coming-soon-area .wpo-event-item .wpo-event-text h2{
+        font-size: 41px;
+    }
+    .wpo-invitation-area-s2 .address{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 344px) {
+    .wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name div:nth-child(2) {
+        font-size: 9px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail .box-name div:nth-child(1){
+        font-size: 8px;   
+    }
+    .wpo-invitation-area-s2 .wpo-event-text .header-family .family-detail i{
+        font-size: 12px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text p, .wpo-coming-soon-area .wpo-event-item .wpo-event-text p{
+        font-size: 9px;
+        margin-top: 7px;
+    }
+    .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text h2, .wpo-coming-soon-area .wpo-event-item .wpo-event-text h2{
+        font-size: 36px;
+    }
+    .wpo-invitation-area-s2 .address{
+        font-size: 11px;
+    }
+}
 @media (max-width: 310px) {
     .wpo-invitation-area-s2 .wpo-event-item .wpo-event-text ul li, .wpo-coming-soon-area .wpo-event-item .wpo-event-text ul li{
+        font-size: 10px;
+    }
+    .wpo-invitation-area-s2 .address{
         font-size: 10px;
     }
 }
